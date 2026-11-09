@@ -1,0 +1,31 @@
+name: Update Subscriptions
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate Subscriptions
+        run: |
+          python generate_subs.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sub01.yaml sub02.yaml sub03.yaml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update edge nodes [skip ci]" && git push)
