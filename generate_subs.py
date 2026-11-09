@@ -171,14 +171,16 @@ proxies:
 {chr(10).join(proxies)}
 
 proxy-groups:
-  - {{name: 🚀 节点选择, type: select, proxies: [自动选择, ⚡ WARP-官方专线, 🤖 人工智能, 🎬 国际流媒体, 全部节点, DIRECT]}}
+  - {{name: 🚀 节点选择, type: select, proxies: [自动选择, 🔗 链式防泄露-专线, ⚡ WARP-官方专线, 🤖 人工智能, 🎬 国际流媒体, 全部节点, DIRECT]}}
   - {{name: 一键连接, type: select, proxies: [🚀 节点选择]}}
   # 自动优选池：物理隔离，仅包含 42 个纯 VLESS 优选节点（0 WARP，彻底避免 CN GeoIP）
   - {{name: 自动选择, type: url-test, proxies: [{auto_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  # 🔗 链式防泄露：VLESS 海外中继前置 ➔ WARP 官方专线落地（彻底消除 CN 归属地污染，双重加密）
+  - {{name: 🔗 链式防泄露-专线, type: relay, proxies: [自动选择, "⚡ WARP-官方专线-01"]}}
   # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (0 额度消耗，独立稳定)
   - {{name: ⚡ WARP-官方专线, type: fallback, proxies: [{warp_list}], url: 'https://www.gstatic.com/generate_204', interval: 600}}
   # 人工智能专属组：优选节点 + WARP
-  - {{name: 🤖 人工智能, type: url-test, proxies: [{ai_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, {ai_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
   # 国际流媒体
   - {{name: 🎬 国际流媒体, type: url-test, proxies: [{all_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
   - {{name: 全部节点, type: select, proxies: [{all_list}]}}
