@@ -1,0 +1,833 @@
+# EdgeNodeSync 订阅 · 设备: sub03 · 节点总数: 50 (42 VLESS + 8 WARP)
+# 生成时间: Local
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+external-controller: 127.0.0.1:9090
+
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
+proxies:
+  - name: "⚡ WARP-官方专线-01"
+    type: wireguard
+    server: engage.cloudflareclient.com
+    port: 2408
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-02"
+    type: wireguard
+    server: 162.159.193.10
+    port: 2408
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-03"
+    type: wireguard
+    server: 162.159.192.1
+    port: 894
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-04"
+    type: wireguard
+    server: 162.159.195.1
+    port: 8884
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-05"
+    type: wireguard
+    server: 188.114.96.1
+    port: 2408
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-06"
+    type: wireguard
+    server: 188.114.97.1
+    port: 890
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-07"
+    type: wireguard
+    server: 188.114.98.1
+    port: 1074
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "⚡ WARP-官方专线-08"
+    type: wireguard
+    server: 188.114.99.1
+    port: 8984
+    ip: 172.16.0.2
+    ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+    private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    reserved: [53, 235, 23]
+    udp: true
+    mtu: 1280
+    remote-dns-resolve: true
+    dns: [1.1.1.1]
+  - name: "优选节点-01 (443)"
+    type: vless
+    server: 162.159.198.1
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-02 (8443)"
+    type: vless
+    server: 162.159.197.1
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-03 (2053)"
+    type: vless
+    server: 104.16.125.127
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-04 (2083)"
+    type: vless
+    server: 104.16.94.155
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-05 (2087)"
+    type: vless
+    server: 104.18.7.34
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-06 (2096)"
+    type: vless
+    server: 104.20.227.120
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-07 (443)"
+    type: vless
+    server: 104.22.11.214
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-08 (8443)"
+    type: vless
+    server: 104.23.195.172
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-09 (2053)"
+    type: vless
+    server: 104.23.214.15
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-10 (2083)"
+    type: vless
+    server: 104.24.0.32
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-11 (2087)"
+    type: vless
+    server: 104.24.120.219
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-12 (2096)"
+    type: vless
+    server: 104.24.141.113
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-13 (443)"
+    type: vless
+    server: 104.24.222.245
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-14 (8443)"
+    type: vless
+    server: 104.26.83.77
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-15 (2053)"
+    type: vless
+    server: 104.26.253.237
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-16 (2083)"
+    type: vless
+    server: 104.27.24.43
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-17 (2087)"
+    type: vless
+    server: 104.27.72.191
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-18 (2096)"
+    type: vless
+    server: 104.27.238.208
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-19 (443)"
+    type: vless
+    server: 108.162.192.131
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-20 (8443)"
+    type: vless
+    server: 108.162.196.66
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-21 (2053)"
+    type: vless
+    server: 108.162.204.242
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-22 (2083)"
+    type: vless
+    server: 108.162.225.118
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-23 (2087)"
+    type: vless
+    server: 108.162.234.40
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-24 (2096)"
+    type: vless
+    server: 108.162.244.237
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-25 (443)"
+    type: vless
+    server: 141.101.69.73
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-26 (8443)"
+    type: vless
+    server: 141.101.84.234
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-27 (2053)"
+    type: vless
+    server: 141.101.106.124
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-28 (2083)"
+    type: vless
+    server: 141.101.108.92
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-29 (2087)"
+    type: vless
+    server: 141.101.108.247
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-30 (2096)"
+    type: vless
+    server: 141.101.118.98
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-31 (443)"
+    type: vless
+    server: 141.101.120.226
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-32 (8443)"
+    type: vless
+    server: 141.101.122.151
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-33 (2053)"
+    type: vless
+    server: 141.101.123.136
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-34 (2083)"
+    type: vless
+    server: 162.158.6.178
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-35 (2087)"
+    type: vless
+    server: 162.158.33.72
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-36 (2096)"
+    type: vless
+    server: 162.158.45.221
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-37 (443)"
+    type: vless
+    server: 162.158.211.13
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-38 (8443)"
+    type: vless
+    server: 162.159.18.244
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-39 (2053)"
+    type: vless
+    server: 162.159.65.63
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-40 (2083)"
+    type: vless
+    server: 162.159.112.37
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-41 (2087)"
+    type: vless
+    server: 172.65.162.1
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "优选节点-42 (2096)"
+    type: vless
+    server: 172.70.18.42
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+
+proxy-groups:
+  - {name: 🚀 节点选择, type: select, proxies: [自动选择, ⚡ WARP-官方专线, 🤖 人工智能, 🎬 国际流媒体, 全部节点, DIRECT]}
+  - {name: 一键连接, type: select, proxies: [🚀 节点选择]}
+  # 自动优选池：物理隔离，仅包含 42 个纯 VLESS 优选节点（0 WARP，彻底避免 CN GeoIP）
+  - {name: 自动选择, type: url-test, proxies: ["优选节点-01 (443)", "优选节点-02 (8443)", "优选节点-03 (2053)", "优选节点-04 (2083)", "优选节点-05 (2087)", "优选节点-06 (2096)", "优选节点-07 (443)", "优选节点-08 (8443)", "优选节点-09 (2053)", "优选节点-10 (2083)", "优选节点-11 (2087)", "优选节点-12 (2096)", "优选节点-13 (443)", "优选节点-14 (8443)", "优选节点-15 (2053)", "优选节点-16 (2083)", "优选节点-17 (2087)", "优选节点-18 (2096)", "优选节点-19 (443)", "优选节点-20 (8443)", "优选节点-21 (2053)", "优选节点-22 (2083)", "优选节点-23 (2087)", "优选节点-24 (2096)", "优选节点-25 (443)", "优选节点-26 (8443)", "优选节点-27 (2053)", "优选节点-28 (2083)", "优选节点-29 (2087)", "优选节点-30 (2096)", "优选节点-31 (443)", "优选节点-32 (8443)", "优选节点-33 (2053)", "优选节点-34 (2083)", "优选节点-35 (2087)", "优选节点-36 (2096)", "优选节点-37 (443)", "优选节点-38 (8443)", "优选节点-39 (2053)", "优选节点-40 (2083)", "优选节点-41 (2087)", "优选节点-42 (2096)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (0 额度消耗，独立稳定)
+  - {name: ⚡ WARP-官方专线, type: fallback, proxies: ["⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"], url: 'https://www.gstatic.com/generate_204', interval: 600}
+  # 人工智能专属组：优选节点 + WARP
+  - {name: 🤖 人工智能, type: url-test, proxies: ["⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08", "优选节点-01 (443)", "优选节点-02 (8443)", "优选节点-03 (2053)", "优选节点-04 (2083)", "优选节点-05 (2087)", "优选节点-06 (2096)", "优选节点-07 (443)", "优选节点-08 (8443)", "优选节点-09 (2053)", "优选节点-10 (2083)", "优选节点-11 (2087)", "优选节点-12 (2096)", "优选节点-13 (443)", "优选节点-14 (8443)", "优选节点-15 (2053)", "优选节点-16 (2083)", "优选节点-17 (2087)", "优选节点-18 (2096)", "优选节点-19 (443)", "优选节点-20 (8443)", "优选节点-21 (2053)", "优选节点-22 (2083)", "优选节点-23 (2087)", "优选节点-24 (2096)", "优选节点-25 (443)", "优选节点-26 (8443)", "优选节点-27 (2053)", "优选节点-28 (2083)", "优选节点-29 (2087)", "优选节点-30 (2096)", "优选节点-31 (443)", "优选节点-32 (8443)", "优选节点-33 (2053)", "优选节点-34 (2083)", "优选节点-35 (2087)", "优选节点-36 (2096)", "优选节点-37 (443)", "优选节点-38 (8443)", "优选节点-39 (2053)", "优选节点-40 (2083)", "优选节点-41 (2087)", "优选节点-42 (2096)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  # 国际流媒体
+  - {name: 🎬 国际流媒体, type: url-test, proxies: ["优选节点-01 (443)", "优选节点-02 (8443)", "优选节点-03 (2053)", "优选节点-04 (2083)", "优选节点-05 (2087)", "优选节点-06 (2096)", "优选节点-07 (443)", "优选节点-08 (8443)", "优选节点-09 (2053)", "优选节点-10 (2083)", "优选节点-11 (2087)", "优选节点-12 (2096)", "优选节点-13 (443)", "优选节点-14 (8443)", "优选节点-15 (2053)", "优选节点-16 (2083)", "优选节点-17 (2087)", "优选节点-18 (2096)", "优选节点-19 (443)", "优选节点-20 (8443)", "优选节点-21 (2053)", "优选节点-22 (2083)", "优选节点-23 (2087)", "优选节点-24 (2096)", "优选节点-25 (443)", "优选节点-26 (8443)", "优选节点-27 (2053)", "优选节点-28 (2083)", "优选节点-29 (2087)", "优选节点-30 (2096)", "优选节点-31 (443)", "优选节点-32 (8443)", "优选节点-33 (2053)", "优选节点-34 (2083)", "优选节点-35 (2087)", "优选节点-36 (2096)", "优选节点-37 (443)", "优选节点-38 (8443)", "优选节点-39 (2053)", "优选节点-40 (2083)", "优选节点-41 (2087)", "优选节点-42 (2096)", "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  - {name: 全部节点, type: select, proxies: ["优选节点-01 (443)", "优选节点-02 (8443)", "优选节点-03 (2053)", "优选节点-04 (2083)", "优选节点-05 (2087)", "优选节点-06 (2096)", "优选节点-07 (443)", "优选节点-08 (8443)", "优选节点-09 (2053)", "优选节点-10 (2083)", "优选节点-11 (2087)", "优选节点-12 (2096)", "优选节点-13 (443)", "优选节点-14 (8443)", "优选节点-15 (2053)", "优选节点-16 (2083)", "优选节点-17 (2087)", "优选节点-18 (2096)", "优选节点-19 (443)", "优选节点-20 (8443)", "优选节点-21 (2053)", "优选节点-22 (2083)", "优选节点-23 (2087)", "优选节点-24 (2096)", "优选节点-25 (443)", "优选节点-26 (8443)", "优选节点-27 (2053)", "优选节点-28 (2083)", "优选节点-29 (2087)", "优选节点-30 (2096)", "优选节点-31 (443)", "优选节点-32 (8443)", "优选节点-33 (2053)", "优选节点-34 (2083)", "优选节点-35 (2087)", "优选节点-36 (2096)", "优选节点-37 (443)", "优选节点-38 (8443)", "优选节点-39 (2053)", "优选节点-40 (2083)", "优选节点-41 (2087)", "优选节点-42 (2096)", "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"]}
+
+rules:
+  # 国内直连
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,-cn,DIRECT
+  - GEOIP,CN,DIRECT
+  # AI 服务走人工智能组
+  - DOMAIN-SUFFIX,openai.com,🤖 人工智能
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 人工智能
+  - DOMAIN-SUFFIX,anthropic.com,🤖 人工智能
+  - DOMAIN-SUFFIX,claude.ai,🤖 人工智能
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 人工智能
+  - DOMAIN-SUFFIX,cursor.com,🤖 人工智能
+  - DOMAIN-SUFFIX,cursor.sh,🤖 人工智能
+  # 流媒体
+  - DOMAIN-SUFFIX,youtube.com,🎬 国际流媒体
+  - DOMAIN-SUFFIX,googlevideo.com,🎬 国际流媒体
+  - DOMAIN-SUFFIX,netflix.com,🎬 国际流媒体
+  # 默认走节点选择
+  - MATCH,🚀 节点选择
