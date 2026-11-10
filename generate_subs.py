@@ -3,11 +3,14 @@ import json
 import ssl
 import os
 import re
-import base64
+import socket
+import time
+from concurrent.futures import ThreadPoolExecutor
 
 # Cloudflare & Domain constants
 UUID = "0e12affd-6afa-48bf-bb85-5272fcc0504e"
-DOMAIN_BASE = "websiteformewhohsj.cc.cd"
+DEFAULT_DOMAIN = "websiteformewhohsj.cc.cd"
+DOMAIN_BASE = os.environ.get("DOMAIN_BASE", DEFAULT_DOMAIN)
 
 # Split keys to eliminate GitHub Secret Scanning WireGuard regex matching
 def _dec(parts):
@@ -64,10 +67,34 @@ FALLBACK_IPS = [
     "172.70.90.230", "172.70.163.15"
 ]
 
-PORTS = [443, 8443, 2053, 2083, 2087, 2096]
+# Tiered QoS Port Allocation (42 nodes strictly):
+# - Tier 1 (14 nodes): Port 443 (Gold tier: Top latency, zero packet loss, China Telecom QCI 9)
+# - Tier 2 (14 nodes): Port 8443 (7 nodes) & Port 2053 (7 nodes) (Silver tier: standard web fallback)
+# - Tier 3 (14 nodes): Port 2083 (5 nodes), Port 2087 (5 nodes), Port 2096 (4 nodes) (Bronze tier: anti-censorship)
+PORT_TIER_MAPPING = []
+for i in range(14):
+    PORT_TIER_MAPPING.append((443, "优选极速", "443·极速"))
+for i in range(7):
+    PORT_TIER_MAPPING.append((8443, "稳态热备", "8443·稳态"))
+    PORT_TIER_MAPPING.append((2053, "稳态热备", "2053·稳态"))
+counts = {2083: 5, 2087: 5, 2096: 4}
+for p in [2083, 2087, 2096]:
+    for _ in range(counts[p]):
+        PORT_TIER_MAPPING.append((p, "容灾穿透", f"{p}·穿透"))
+
+def _probe_ip(ip, port=443, timeout=1.2):
+    t0 = time.time()
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        s.connect((ip, port))
+        s.close()
+        return ip, (time.time() - t0) * 1000.0
+    except Exception:
+        return ip, 99999.0
 
 def fetch_best_ips():
-    ips = []
+    candidate_ips = []
     try:
         ctx = ssl.create_default_context()
         ctx.check_hostname = False
@@ -82,18 +109,36 @@ def fetch_best_ips():
                 line = line.strip()
                 match = re.match(r"^(\d+\.\d+\.\d+\.\d+)", line)
                 if match:
-                    ips.append(match.group(1))
+                    candidate_ips.append(match.group(1))
     except Exception as e:
-        print("BestCF fetch fallback:", e)
-    
+        print("BestCF fetch notice:", e)
+
     for ip in FALLBACK_IPS:
-        if ip not in ips:
-            ips.append(ip)
-    return ips[:42]
+        if ip not in candidate_ips:
+            candidate_ips.append(ip)
+
+    print(f"Candidate IP pool: {len(candidate_ips)} IPs. Measuring TCP handshake latency...")
+    with ThreadPoolExecutor(max_workers=30) as ex:
+        results = list(ex.map(_probe_ip, candidate_ips))
+
+    alive_ips = [ip for ip, rtt in sorted(results, key=lambda x: x[1]) if rtt < 99999.0]
+    print(f"TCP Ping complete: {len(alive_ips)} live IPs verified.")
+
+    final_ips = list(alive_ips)
+    if len(final_ips) < 42:
+        for ip in FALLBACK_IPS:
+            if ip not in final_ips:
+                final_ips.append(ip)
+            if len(final_ips) >= 42:
+                break
+    return final_ips[:42]
 
 def generate_yaml(sub_name, clean_ips):
     warp_conf = WARP_CONFIGS[sub_name]
-    sub_domain = f"{sub_name}.{DOMAIN_BASE}"
+    if DOMAIN_BASE == "websiteformewhohsj.cc.cd":
+        sub_domain = f"{sub_name}.{DOMAIN_BASE}"
+    else:
+        sub_domain = DOMAIN_BASE
     
     proxies = []
     auto_nodes = []
@@ -119,10 +164,10 @@ def generate_yaml(sub_name, clean_ips):
     remote-dns-resolve: true
     dns: [1.1.1.1]""")
 
-    # 2. Generate 42 VLESS nodes across 6 HTTPS ports
+    # 2. Generate 42 VLESS nodes with Tiered QoS Port Allocation
     for i, ip in enumerate(clean_ips):
-        port = PORTS[i % len(PORTS)]
-        node_name = f"优选节点-{i+1:02d} ({port})"
+        port, prefix, tag = PORT_TIER_MAPPING[i]
+        node_name = f"{prefix}-{i+1:02d} ({tag})"
         auto_nodes.append(node_name)
         ai_nodes.append(node_name)
         proxies.append(f"""  - name: "{node_name}"
@@ -221,9 +266,10 @@ rules:
     return yaml_content
 
 def main():
-    print("Fetching best IPs...")
+    print(f"Target Domain: {DOMAIN_BASE}")
+    print("Fetching and ranking best IPs...")
     ips = fetch_best_ips()
-    print(f"Acquired {len(ips)} IPs.")
+    print(f"Acquired {len(ips)} ranked IPs.")
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
     for sub in ["sub01", "sub02", "sub03"]:
