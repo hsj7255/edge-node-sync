@@ -1,0 +1,11 @@
+/*.yaml
+  Access-Control-Allow-Origin: *
+  Content-Type: text/yaml; charset=utf-8
+  Subscription-Userinfo: upload=0; download=850000000; total=100000000000; expire=1796083200
+  Cache-Control: public, max-age=300
+
+/sub*
+  Access-Control-Allow-Origin: *
+  Content-Type: text/yaml; charset=utf-8
+  Subscription-Userinfo: upload=0; download=850000000; total=100000000000; expire=1796083200
+  Cache-Control: public, max-age=300
