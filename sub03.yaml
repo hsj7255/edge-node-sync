@@ -7,6 +7,7 @@ mode: rule
 log-level: info
 ipv6: false
 external-controller: 127.0.0.1:9090
+profile-update-interval: 4
 
 dns:
   enable: true
@@ -20,6 +21,14 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 
 proxies:
   - name: "⚡ WARP-官方专线-01"
