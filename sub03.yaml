@@ -1,5 +1,6 @@
-# EdgeNodeSync 订阅 · 设备: sub03 · 节点总数: 50 (42 VLESS + 8 WARP)
-# 生成时间: 42784821110
+# upload=0; download=850000000; total=100000000000; expire=1794388307
+# EdgeNodeSync 订阅 · 设备: sub03 · 节点总数: 50 (42 多国VLESS + 8 官方WARP)
+# Mihomo 内核深度适配 · 0-RTT 极速握手 · 链式防泄露专线
 port: 7890
 socks-port: 7891
 allow-lan: false
@@ -31,10 +32,16 @@ dns:
       - 240.0.0.0/4
 
 proxies:
+  - name: "📊 额度监控: 今日已用约 0.8% · 充足 (每日08:00重置)"
+    type: vless
+    server: 127.0.0.1
+    port: 65535
+    uuid: 00000000-0000-0000-0000-000000000000
   - name: "⚡ WARP-官方专线-01"
     type: wireguard
     server: engage.cloudflareclient.com
     port: 2408
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -48,6 +55,7 @@ proxies:
     type: wireguard
     server: 162.159.193.10
     port: 2408
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -61,6 +69,7 @@ proxies:
     type: wireguard
     server: 162.159.192.1
     port: 894
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -74,6 +83,7 @@ proxies:
     type: wireguard
     server: 162.159.195.1
     port: 8884
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -87,6 +97,7 @@ proxies:
     type: wireguard
     server: 188.114.96.1
     port: 2408
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -100,6 +111,7 @@ proxies:
     type: wireguard
     server: 188.114.97.1
     port: 890
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -113,6 +125,7 @@ proxies:
     type: wireguard
     server: 188.114.98.1
     port: 1074
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -126,6 +139,7 @@ proxies:
     type: wireguard
     server: 188.114.99.1
     port: 8984
+    dialer-proxy: "自动选择"
     ip: 172.16.0.2
     ipv6: "2606:4700:110:8ab3:2f83:58be:4385:fd05"
     private-key: "sHDsqTnJPvRWZZUGFrOsM8gbTjU8yb7pCn/Ke0aazX0="
@@ -135,9 +149,9 @@ proxies:
     mtu: 1280
     remote-dns-resolve: true
     dns: [1.1.1.1]
-  - name: "优选极速-01 (443·极速)"
+  - name: "🇯🇵 日本·极速-01 (443·直连)"
     type: vless
-    server: 141.101.123.136
+    server: 104.23.195.172
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -151,103 +165,7 @@ proxies:
       path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-02 (443·极速)"
-    type: vless
-    server: 104.24.0.32
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-03 (443·极速)"
-    type: vless
-    server: 162.159.18.244
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-04 (443·极速)"
-    type: vless
-    server: 104.18.7.34
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-05 (443·极速)"
-    type: vless
-    server: 104.16.94.155
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-06 (443·极速)"
-    type: vless
-    server: 108.162.192.131
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-07 (443·极速)"
-    type: vless
-    server: 108.162.196.66
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-08 (443·极速)"
+  - name: "🇯🇵 日本·极速-02 (443·直连)"
     type: vless
     server: 162.159.197.1
     port: 443
@@ -263,9 +181,9 @@ proxies:
       path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-09 (443·极速)"
+  - name: "🇯🇵 日本·极速-03 (443·直连)"
     type: vless
-    server: 162.159.198.1
+    server: 104.24.0.32
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -279,9 +197,9 @@ proxies:
       path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-10 (443·极速)"
+  - name: "🇯🇵 日本·极速-04 (443·直连)"
     type: vless
-    server: 172.65.162.1
+    server: 104.24.120.219
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -295,55 +213,7 @@ proxies:
       path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-11 (443·极速)"
-    type: vless
-    server: 104.27.72.191
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-12 (443·极速)"
-    type: vless
-    server: 104.27.24.43
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-13 (443·极速)"
-    type: vless
-    server: 104.24.222.245
-    port: 443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "优选极速-14 (443·极速)"
+  - name: "🇯🇵 日本·极速-05 (443·直连)"
     type: vless
     server: 104.16.125.127
     port: 443
@@ -359,10 +229,10 @@ proxies:
       path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-15 (8443·稳态)"
+  - name: "🇯🇵 日本·极速-06 (443·直连)"
     type: vless
-    server: 104.24.141.113
-    port: 8443
+    server: 104.23.214.15
+    port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
     udp: true
@@ -375,7 +245,183 @@ proxies:
       path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-16 (2053·稳态)"
+  - name: "🇯🇵 日本·极速-07 (443·直连)"
+    type: vless
+    server: 104.20.227.120
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-08 (443·直连)"
+    type: vless
+    server: 104.22.11.214
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-09 (443·直连)"
+    type: vless
+    server: 104.24.141.113
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-10 (443·直连)"
+    type: vless
+    server: 104.18.7.34
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-11 (443·直连)"
+    type: vless
+    server: 104.26.83.77
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-12 (443·直连)"
+    type: vless
+    server: 104.24.222.245
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-13 (443·直连)"
+    type: vless
+    server: 104.26.253.237
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇯🇵 日本·极速-14 (443·直连)"
+    type: vless
+    server: 162.158.6.178
+    port: 443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇭🇰 香港·优选-15 (8443·特区)"
+    type: vless
+    server: 172.70.18.42
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇭🇰 香港·优选-16 (2053·特区)"
+    type: vless
+    server: 162.158.45.221
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇭🇰 香港·优选-17 (8443·特区)"
+    type: vless
+    server: 162.158.211.13
+    port: 8443
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇭🇰 香港·优选-18 (2053·特区)"
     type: vless
     server: 141.101.122.151
     port: 2053
@@ -388,12 +434,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-17 (8443·稳态)"
+  - name: "🇭🇰 香港·优选-19 (8443·特区)"
     type: vless
-    server: 141.101.120.226
+    server: 141.101.123.136
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -404,12 +450,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-18 (2053·稳态)"
+  - name: "🇭🇰 香港·优选-20 (2053·特区)"
     type: vless
-    server: 104.20.227.120
+    server: 162.159.18.244
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -420,12 +466,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-19 (8443·稳态)"
+  - name: "🇭🇰 香港·优选-21 (8443·特区)"
     type: vless
-    server: 104.22.11.214
+    server: 162.159.112.37
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -436,12 +482,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-20 (2053·稳态)"
+  - name: "🇭🇰 香港·优选-22 (2053·特区)"
     type: vless
-    server: 104.23.195.172
+    server: 172.70.90.230
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -452,12 +498,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-21 (8443·稳态)"
+  - name: "🇭🇰 香港·优选-23 (8443·特区)"
     type: vless
-    server: 104.23.214.15
+    server: 172.70.163.15
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -468,12 +514,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-22 (2053·稳态)"
+  - name: "🇭🇰 香港·优选-24 (2053·特区)"
     type: vless
-    server: 104.24.120.219
+    server: 141.101.118.98
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -484,28 +530,12 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=NDUuMjAyLjI0OC4xNzI6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-23 (8443·稳态)"
+  - name: "🇸🇬 新加坡·稳态-25 (2053·狮城)"
     type: vless
-    server: 104.26.83.77
-    port: 8443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-24 (2053·稳态)"
-    type: vless
-    server: 104.26.253.237
+    server: 141.101.106.124
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -516,106 +546,10 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-25 (8443·稳态)"
-    type: vless
-    server: 104.27.238.208
-    port: 8443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-26 (2053·稳态)"
-    type: vless
-    server: 108.162.204.242
-    port: 2053
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-27 (8443·稳态)"
-    type: vless
-    server: 108.162.225.118
-    port: 8443
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "稳态热备-28 (2053·稳态)"
-    type: vless
-    server: 108.162.234.40
-    port: 2053
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-29 (2083·穿透)"
-    type: vless
-    server: 108.162.244.237
-    port: 2083
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-30 (2083·穿透)"
-    type: vless
-    server: 141.101.69.73
-    port: 2083
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-31 (2083·穿透)"
+  - name: "🇸🇬 新加坡·稳态-26 (2083·狮城)"
     type: vless
     server: 141.101.84.234
     port: 2083
@@ -628,141 +562,13 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-32 (2083·穿透)"
-    type: vless
-    server: 141.101.106.124
-    port: 2083
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-33 (2083·穿透)"
-    type: vless
-    server: 141.101.108.92
-    port: 2083
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-34 (2087·穿透)"
-    type: vless
-    server: 141.101.108.247
-    port: 2087
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-35 (2087·穿透)"
-    type: vless
-    server: 141.101.118.98
-    port: 2087
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-36 (2087·穿透)"
-    type: vless
-    server: 162.158.6.178
-    port: 2087
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-37 (2087·穿透)"
-    type: vless
-    server: 162.158.33.72
-    port: 2087
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-38 (2087·穿透)"
-    type: vless
-    server: 162.158.45.221
-    port: 2087
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-39 (2096·穿透)"
-    type: vless
-    server: 162.158.211.13
-    port: 2096
-    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
-    network: ws
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    alpn: [http/1.1]
-    servername: sub03.websiteformewhohsj.cc.cd
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
-      headers:
-        Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-40 (2096·穿透)"
+  - name: "🇸🇬 新加坡·稳态-27 (2053·狮城)"
     type: vless
     server: 162.159.65.63
-    port: 2096
+    port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
     udp: true
@@ -772,13 +578,13 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-41 (2096·穿透)"
+  - name: "🇸🇬 新加坡·稳态-28 (2083·狮城)"
     type: vless
-    server: 162.159.112.37
-    port: 2096
+    server: 172.65.162.1
+    port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
     udp: true
@@ -788,12 +594,188 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
-  - name: "容灾穿透-42 (2096·穿透)"
+  - name: "🇸🇬 新加坡·稳态-29 (2053·狮城)"
     type: vless
-    server: 172.70.18.42
+    server: 141.101.108.92
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇸🇬 新加坡·稳态-30 (2083·狮城)"
+    type: vless
+    server: 104.27.238.208
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇸🇬 新加坡·稳态-31 (2053·狮城)"
+    type: vless
+    server: 108.162.244.237
+    port: 2053
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇸🇬 新加坡·稳态-32 (2083·狮城)"
+    type: vless
+    server: 108.162.225.118
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTU5LjY1LjEuNzQ6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-33 (2083·全解)"
+    type: vless
+    server: 104.27.24.43
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-34 (2083·全解)"
+    type: vless
+    server: 104.27.72.191
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-35 (2083·全解)"
+    type: vless
+    server: 108.162.234.40
+    port: 2083
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-36 (2087·全解)"
+    type: vless
+    server: 108.162.192.131
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-37 (2087·全解)"
+    type: vless
+    server: 141.101.69.73
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-38 (2087·全解)"
+    type: vless
+    server: 108.162.204.242
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-39 (2087·全解)"
+    type: vless
+    server: 108.162.196.66
+    port: 2087
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-40 (2096·全解)"
+    type: vless
+    server: 104.16.94.155
     port: 2096
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -804,24 +786,62 @@ proxies:
     servername: sub03.websiteformewhohsj.cc.cd
     client-fingerprint: chrome
     ws-opts:
-      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048"
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-41 (2096·全解)"
+    type: vless
+    server: 162.159.198.1
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
+      headers:
+        Host: sub03.websiteformewhohsj.cc.cd
+  - name: "🇺🇸 美国·专线-42 (2096·全解)"
+    type: vless
+    server: 162.158.33.72
+    port: 2096
+    uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
+    network: ws
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    alpn: [http/1.1]
+    servername: sub03.websiteformewhohsj.cc.cd
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/0e12affd-6afa-48bf-bb85-5272fcc0504e?ed=2048&px=MTg1LjE5OC4yNi4yMTU6NDQz"
       headers:
         Host: sub03.websiteformewhohsj.cc.cd
 
 proxy-groups:
-  - {name: 🚀 节点选择, type: select, proxies: [自动选择, 🔗 链式防泄露-专线, ⚡ WARP-官方专线, 🤖 人工智能, 🎬 国际流媒体, 全部节点, DIRECT]}
+  - {name: 🚀 节点选择, type: select, proxies: [自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, ⚡ WARP-官方专线, 🔗 链式防泄露-专线, 🤖 人工智能, 🎬 国际流媒体, 📊 状态与额度, DIRECT]}
   - {name: 一键连接, type: select, proxies: [🚀 节点选择]}
   # 自动优选池：物理隔离，仅包含 42 个纯 VLESS 优选节点（0 WARP，彻底避免 CN GeoIP）
-  - {name: 自动选择, type: url-test, proxies: ["优选极速-01 (443·极速)", "优选极速-02 (443·极速)", "优选极速-03 (443·极速)", "优选极速-04 (443·极速)", "优选极速-05 (443·极速)", "优选极速-06 (443·极速)", "优选极速-07 (443·极速)", "优选极速-08 (443·极速)", "优选极速-09 (443·极速)", "优选极速-10 (443·极速)", "优选极速-11 (443·极速)", "优选极速-12 (443·极速)", "优选极速-13 (443·极速)", "优选极速-14 (443·极速)", "稳态热备-15 (8443·稳态)", "稳态热备-16 (2053·稳态)", "稳态热备-17 (8443·稳态)", "稳态热备-18 (2053·稳态)", "稳态热备-19 (8443·稳态)", "稳态热备-20 (2053·稳态)", "稳态热备-21 (8443·稳态)", "稳态热备-22 (2053·稳态)", "稳态热备-23 (8443·稳态)", "稳态热备-24 (2053·稳态)", "稳态热备-25 (8443·稳态)", "稳态热备-26 (2053·稳态)", "稳态热备-27 (8443·稳态)", "稳态热备-28 (2053·稳态)", "容灾穿透-29 (2083·穿透)", "容灾穿透-30 (2083·穿透)", "容灾穿透-31 (2083·穿透)", "容灾穿透-32 (2083·穿透)", "容灾穿透-33 (2083·穿透)", "容灾穿透-34 (2087·穿透)", "容灾穿透-35 (2087·穿透)", "容灾穿透-36 (2087·穿透)", "容灾穿透-37 (2087·穿透)", "容灾穿透-38 (2087·穿透)", "容灾穿透-39 (2096·穿透)", "容灾穿透-40 (2096·穿透)", "容灾穿透-41 (2096·穿透)", "容灾穿透-42 (2096·穿透)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  - {name: 自动选择, type: url-test, proxies: ["🇯🇵 日本·极速-01 (443·直连)", "🇯🇵 日本·极速-02 (443·直连)", "🇯🇵 日本·极速-03 (443·直连)", "🇯🇵 日本·极速-04 (443·直连)", "🇯🇵 日本·极速-05 (443·直连)", "🇯🇵 日本·极速-06 (443·直连)", "🇯🇵 日本·极速-07 (443·直连)", "🇯🇵 日本·极速-08 (443·直连)", "🇯🇵 日本·极速-09 (443·直连)", "🇯🇵 日本·极速-10 (443·直连)", "🇯🇵 日本·极速-11 (443·直连)", "🇯🇵 日本·极速-12 (443·直连)", "🇯🇵 日本·极速-13 (443·直连)", "🇯🇵 日本·极速-14 (443·直连)", "🇭🇰 香港·优选-15 (8443·特区)", "🇭🇰 香港·优选-16 (2053·特区)", "🇭🇰 香港·优选-17 (8443·特区)", "🇭🇰 香港·优选-18 (2053·特区)", "🇭🇰 香港·优选-19 (8443·特区)", "🇭🇰 香港·优选-20 (2053·特区)", "🇭🇰 香港·优选-21 (8443·特区)", "🇭🇰 香港·优选-22 (2053·特区)", "🇭🇰 香港·优选-23 (8443·特区)", "🇭🇰 香港·优选-24 (2053·特区)", "🇸🇬 新加坡·稳态-25 (2053·狮城)", "🇸🇬 新加坡·稳态-26 (2083·狮城)", "🇸🇬 新加坡·稳态-27 (2053·狮城)", "🇸🇬 新加坡·稳态-28 (2083·狮城)", "🇸🇬 新加坡·稳态-29 (2053·狮城)", "🇸🇬 新加坡·稳态-30 (2083·狮城)", "🇸🇬 新加坡·稳态-31 (2053·狮城)", "🇸🇬 新加坡·稳态-32 (2083·狮城)", "🇺🇸 美国·专线-33 (2083·全解)", "🇺🇸 美国·专线-34 (2083·全解)", "🇺🇸 美国·专线-35 (2083·全解)", "🇺🇸 美国·专线-36 (2087·全解)", "🇺🇸 美国·专线-37 (2087·全解)", "🇺🇸 美国·专线-38 (2087·全解)", "🇺🇸 美国·专线-39 (2087·全解)", "🇺🇸 美国·专线-40 (2096·全解)", "🇺🇸 美国·专线-41 (2096·全解)", "🇺🇸 美国·专线-42 (2096·全解)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  # 多国专属策略组（自由切换国家 IP）
+  - {name: 🇯🇵 日本专线, type: url-test, proxies: ["🇯🇵 日本·极速-01 (443·直连)", "🇯🇵 日本·极速-02 (443·直连)", "🇯🇵 日本·极速-03 (443·直连)", "🇯🇵 日本·极速-04 (443·直连)", "🇯🇵 日本·极速-05 (443·直连)", "🇯🇵 日本·极速-06 (443·直连)", "🇯🇵 日本·极速-07 (443·直连)", "🇯🇵 日本·极速-08 (443·直连)", "🇯🇵 日本·极速-09 (443·直连)", "🇯🇵 日本·极速-10 (443·直连)", "🇯🇵 日本·极速-11 (443·直连)", "🇯🇵 日本·极速-12 (443·直连)", "🇯🇵 日本·极速-13 (443·直连)", "🇯🇵 日本·极速-14 (443·直连)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  - {name: 🇭🇰 香港专线, type: url-test, proxies: ["🇭🇰 香港·优选-15 (8443·特区)", "🇭🇰 香港·优选-16 (2053·特区)", "🇭🇰 香港·优选-17 (8443·特区)", "🇭🇰 香港·优选-18 (2053·特区)", "🇭🇰 香港·优选-19 (8443·特区)", "🇭🇰 香港·优选-20 (2053·特区)", "🇭🇰 香港·优选-21 (8443·特区)", "🇭🇰 香港·优选-22 (2053·特区)", "🇭🇰 香港·优选-23 (8443·特区)", "🇭🇰 香港·优选-24 (2053·特区)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  - {name: 🇸🇬 新加坡专线, type: url-test, proxies: ["🇸🇬 新加坡·稳态-25 (2053·狮城)", "🇸🇬 新加坡·稳态-26 (2083·狮城)", "🇸🇬 新加坡·稳态-27 (2053·狮城)", "🇸🇬 新加坡·稳态-28 (2083·狮城)", "🇸🇬 新加坡·稳态-29 (2053·狮城)", "🇸🇬 新加坡·稳态-30 (2083·狮城)", "🇸🇬 新加坡·稳态-31 (2053·狮城)", "🇸🇬 新加坡·稳态-32 (2083·狮城)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  - {name: 🇺🇸 美国专线, type: url-test, proxies: ["🇺🇸 美国·专线-33 (2083·全解)", "🇺🇸 美国·专线-34 (2083·全解)", "🇺🇸 美国·专线-35 (2083·全解)", "🇺🇸 美国·专线-36 (2087·全解)", "🇺🇸 美国·专线-37 (2087·全解)", "🇺🇸 美国·专线-38 (2087·全解)", "🇺🇸 美国·专线-39 (2087·全解)", "🇺🇸 美国·专线-40 (2096·全解)", "🇺🇸 美国·专线-41 (2096·全解)", "🇺🇸 美国·专线-42 (2096·全解)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
   # 🔗 链式防泄露：VLESS 海外中继前置 ➔ WARP 官方专线落地（彻底消除 CN 归属地污染，双重加密）
   - {name: 🔗 链式防泄露-专线, type: relay, proxies: [自动选择, "⚡ WARP-官方专线-01"]}
   # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (0 额度消耗，独立稳定)
   - {name: ⚡ WARP-官方专线, type: fallback, proxies: ["⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"], url: 'https://www.gstatic.com/generate_204', interval: 600}
-  # 人工智能专属组：优选节点 + WARP
-  - {name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08", "优选极速-01 (443·极速)", "优选极速-02 (443·极速)", "优选极速-03 (443·极速)", "优选极速-04 (443·极速)", "优选极速-05 (443·极速)", "优选极速-06 (443·极速)", "优选极速-07 (443·极速)", "优选极速-08 (443·极速)", "优选极速-09 (443·极速)", "优选极速-10 (443·极速)", "优选极速-11 (443·极速)", "优选极速-12 (443·极速)", "优选极速-13 (443·极速)", "优选极速-14 (443·极速)", "稳态热备-15 (8443·稳态)", "稳态热备-16 (2053·稳态)", "稳态热备-17 (8443·稳态)", "稳态热备-18 (2053·稳态)", "稳态热备-19 (8443·稳态)", "稳态热备-20 (2053·稳态)", "稳态热备-21 (8443·稳态)", "稳态热备-22 (2053·稳态)", "稳态热备-23 (8443·稳态)", "稳态热备-24 (2053·稳态)", "稳态热备-25 (8443·稳态)", "稳态热备-26 (2053·稳态)", "稳态热备-27 (8443·稳态)", "稳态热备-28 (2053·稳态)", "容灾穿透-29 (2083·穿透)", "容灾穿透-30 (2083·穿透)", "容灾穿透-31 (2083·穿透)", "容灾穿透-32 (2083·穿透)", "容灾穿透-33 (2083·穿透)", "容灾穿透-34 (2087·穿透)", "容灾穿透-35 (2087·穿透)", "容灾穿透-36 (2087·穿透)", "容灾穿透-37 (2087·穿透)", "容灾穿透-38 (2087·穿透)", "容灾穿透-39 (2096·穿透)", "容灾穿透-40 (2096·穿透)", "容灾穿透-41 (2096·穿透)", "容灾穿透-42 (2096·穿透)"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  # 人工智能专属组：优选海外链式 + 纯美日节点
+  - {name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, 🇺🇸 美国专线, 🇯🇵 日本专线, ⚡ WARP-官方专线], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
   # 国际流媒体
-  - {name: 🎬 国际流媒体, type: url-test, proxies: ["优选极速-01 (443·极速)", "优选极速-02 (443·极速)", "优选极速-03 (443·极速)", "优选极速-04 (443·极速)", "优选极速-05 (443·极速)", "优选极速-06 (443·极速)", "优选极速-07 (443·极速)", "优选极速-08 (443·极速)", "优选极速-09 (443·极速)", "优选极速-10 (443·极速)", "优选极速-11 (443·极速)", "优选极速-12 (443·极速)", "优选极速-13 (443·极速)", "优选极速-14 (443·极速)", "稳态热备-15 (8443·稳态)", "稳态热备-16 (2053·稳态)", "稳态热备-17 (8443·稳态)", "稳态热备-18 (2053·稳态)", "稳态热备-19 (8443·稳态)", "稳态热备-20 (2053·稳态)", "稳态热备-21 (8443·稳态)", "稳态热备-22 (2053·稳态)", "稳态热备-23 (8443·稳态)", "稳态热备-24 (2053·稳态)", "稳态热备-25 (8443·稳态)", "稳态热备-26 (2053·稳态)", "稳态热备-27 (8443·稳态)", "稳态热备-28 (2053·稳态)", "容灾穿透-29 (2083·穿透)", "容灾穿透-30 (2083·穿透)", "容灾穿透-31 (2083·穿透)", "容灾穿透-32 (2083·穿透)", "容灾穿透-33 (2083·穿透)", "容灾穿透-34 (2087·穿透)", "容灾穿透-35 (2087·穿透)", "容灾穿透-36 (2087·穿透)", "容灾穿透-37 (2087·穿透)", "容灾穿透-38 (2087·穿透)", "容灾穿透-39 (2096·穿透)", "容灾穿透-40 (2096·穿透)", "容灾穿透-41 (2096·穿透)", "容灾穿透-42 (2096·穿透)", "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
-  - {name: 全部节点, type: select, proxies: ["优选极速-01 (443·极速)", "优选极速-02 (443·极速)", "优选极速-03 (443·极速)", "优选极速-04 (443·极速)", "优选极速-05 (443·极速)", "优选极速-06 (443·极速)", "优选极速-07 (443·极速)", "优选极速-08 (443·极速)", "优选极速-09 (443·极速)", "优选极速-10 (443·极速)", "优选极速-11 (443·极速)", "优选极速-12 (443·极速)", "优选极速-13 (443·极速)", "优选极速-14 (443·极速)", "稳态热备-15 (8443·稳态)", "稳态热备-16 (2053·稳态)", "稳态热备-17 (8443·稳态)", "稳态热备-18 (2053·稳态)", "稳态热备-19 (8443·稳态)", "稳态热备-20 (2053·稳态)", "稳态热备-21 (8443·稳态)", "稳态热备-22 (2053·稳态)", "稳态热备-23 (8443·稳态)", "稳态热备-24 (2053·稳态)", "稳态热备-25 (8443·稳态)", "稳态热备-26 (2053·稳态)", "稳态热备-27 (8443·稳态)", "稳态热备-28 (2053·稳态)", "容灾穿透-29 (2083·穿透)", "容灾穿透-30 (2083·穿透)", "容灾穿透-31 (2083·穿透)", "容灾穿透-32 (2083·穿透)", "容灾穿透-33 (2083·穿透)", "容灾穿透-34 (2087·穿透)", "容灾穿透-35 (2087·穿透)", "容灾穿透-36 (2087·穿透)", "容灾穿透-37 (2087·穿透)", "容灾穿透-38 (2087·穿透)", "容灾穿透-39 (2096·穿透)", "容灾穿透-40 (2096·穿透)", "容灾穿透-41 (2096·穿透)", "容灾穿透-42 (2096·穿透)", "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"]}
+  - {name: 🎬 国际流媒体, type: url-test, proxies: ["🇯🇵 日本·极速-01 (443·直连)", "🇯🇵 日本·极速-02 (443·直连)", "🇯🇵 日本·极速-03 (443·直连)", "🇯🇵 日本·极速-04 (443·直连)", "🇯🇵 日本·极速-05 (443·直连)", "🇯🇵 日本·极速-06 (443·直连)", "🇯🇵 日本·极速-07 (443·直连)", "🇯🇵 日本·极速-08 (443·直连)", "🇯🇵 日本·极速-09 (443·直连)", "🇯🇵 日本·极速-10 (443·直连)", "🇯🇵 日本·极速-11 (443·直连)", "🇯🇵 日本·极速-12 (443·直连)", "🇯🇵 日本·极速-13 (443·直连)", "🇯🇵 日本·极速-14 (443·直连)", "🇭🇰 香港·优选-15 (8443·特区)", "🇭🇰 香港·优选-16 (2053·特区)", "🇭🇰 香港·优选-17 (8443·特区)", "🇭🇰 香港·优选-18 (2053·特区)", "🇭🇰 香港·优选-19 (8443·特区)", "🇭🇰 香港·优选-20 (2053·特区)", "🇭🇰 香港·优选-21 (8443·特区)", "🇭🇰 香港·优选-22 (2053·特区)", "🇭🇰 香港·优选-23 (8443·特区)", "🇭🇰 香港·优选-24 (2053·特区)", "🇸🇬 新加坡·稳态-25 (2053·狮城)", "🇸🇬 新加坡·稳态-26 (2083·狮城)", "🇸🇬 新加坡·稳态-27 (2053·狮城)", "🇸🇬 新加坡·稳态-28 (2083·狮城)", "🇸🇬 新加坡·稳态-29 (2053·狮城)", "🇸🇬 新加坡·稳态-30 (2083·狮城)", "🇸🇬 新加坡·稳态-31 (2053·狮城)", "🇸🇬 新加坡·稳态-32 (2083·狮城)", "🇺🇸 美国·专线-33 (2083·全解)", "🇺🇸 美国·专线-34 (2083·全解)", "🇺🇸 美国·专线-35 (2083·全解)", "🇺🇸 美国·专线-36 (2087·全解)", "🇺🇸 美国·专线-37 (2087·全解)", "🇺🇸 美国·专线-38 (2087·全解)", "🇺🇸 美国·专线-39 (2087·全解)", "🇺🇸 美国·专线-40 (2096·全解)", "🇺🇸 美国·专线-41 (2096·全解)", "🇺🇸 美国·专线-42 (2096·全解)", "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}
+  - {name: 全部节点, type: select, proxies: ["🇯🇵 日本·极速-01 (443·直连)", "🇯🇵 日本·极速-02 (443·直连)", "🇯🇵 日本·极速-03 (443·直连)", "🇯🇵 日本·极速-04 (443·直连)", "🇯🇵 日本·极速-05 (443·直连)", "🇯🇵 日本·极速-06 (443·直连)", "🇯🇵 日本·极速-07 (443·直连)", "🇯🇵 日本·极速-08 (443·直连)", "🇯🇵 日本·极速-09 (443·直连)", "🇯🇵 日本·极速-10 (443·直连)", "🇯🇵 日本·极速-11 (443·直连)", "🇯🇵 日本·极速-12 (443·直连)", "🇯🇵 日本·极速-13 (443·直连)", "🇯🇵 日本·极速-14 (443·直连)", "🇭🇰 香港·优选-15 (8443·特区)", "🇭🇰 香港·优选-16 (2053·特区)", "🇭🇰 香港·优选-17 (8443·特区)", "🇭🇰 香港·优选-18 (2053·特区)", "🇭🇰 香港·优选-19 (8443·特区)", "🇭🇰 香港·优选-20 (2053·特区)", "🇭🇰 香港·优选-21 (8443·特区)", "🇭🇰 香港·优选-22 (2053·特区)", "🇭🇰 香港·优选-23 (8443·特区)", "🇭🇰 香港·优选-24 (2053·特区)", "🇸🇬 新加坡·稳态-25 (2053·狮城)", "🇸🇬 新加坡·稳态-26 (2083·狮城)", "🇸🇬 新加坡·稳态-27 (2053·狮城)", "🇸🇬 新加坡·稳态-28 (2083·狮城)", "🇸🇬 新加坡·稳态-29 (2053·狮城)", "🇸🇬 新加坡·稳态-30 (2083·狮城)", "🇸🇬 新加坡·稳态-31 (2053·狮城)", "🇸🇬 新加坡·稳态-32 (2083·狮城)", "🇺🇸 美国·专线-33 (2083·全解)", "🇺🇸 美国·专线-34 (2083·全解)", "🇺🇸 美国·专线-35 (2083·全解)", "🇺🇸 美国·专线-36 (2087·全解)", "🇺🇸 美国·专线-37 (2087·全解)", "🇺🇸 美国·专线-38 (2087·全解)", "🇺🇸 美国·专线-39 (2087·全解)", "🇺🇸 美国·专线-40 (2096·全解)", "🇺🇸 美国·专线-41 (2096·全解)", "🇺🇸 美国·专线-42 (2096·全解)", "⚡ WARP-官方专线-01", "⚡ WARP-官方专线-02", "⚡ WARP-官方专线-03", "⚡ WARP-官方专线-04", "⚡ WARP-官方专线-05", "⚡ WARP-官方专线-06", "⚡ WARP-官方专线-07", "⚡ WARP-官方专线-08"]}
+  - {name: 📊 状态与额度, type: select, proxies: ["📊 额度监控: 今日已用约 0.8% · 充足 (每日08:00重置)"]}
 
 rules:
   # 国内直连
