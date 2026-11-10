@@ -1,5 +1,5 @@
 # EdgeNodeSync 订阅 · 设备: sub02 · 节点总数: 50 (42 VLESS + 8 WARP)
-# 生成时间: 42675961379
+# 生成时间: 42744143137
 port: 7890
 socks-port: 7891
 allow-lan: false
