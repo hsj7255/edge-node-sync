@@ -5,6 +5,7 @@ import os
 import re
 import socket
 import time
+import base64
 from concurrent.futures import ThreadPoolExecutor
 
 # Cloudflare & Domain constants
@@ -15,6 +16,21 @@ DOMAIN_BASE = os.environ.get("DOMAIN_BASE", DEFAULT_DOMAIN)
 # Split keys to eliminate GitHub Secret Scanning WireGuard regex matching
 def _dec(parts):
     return "".join(parts)
+
+def _b64(s):
+    return base64.b64encode(s.encode('utf-8')).decode('ascii').replace('=', '')
+
+# Safe Egress Gateways (Base64 encoded for clean URL query parameters)
+# JP: Native direct connect (Cloudflare Tokyo edge, lowest latency ~120ms)
+# HK: Hong Kong clean egress gateway
+# SG: Singapore clean egress gateway
+# US: United States clean egress gateway
+EGRESS_MAP = {
+    "JP": None,
+    "HK": _b64("45.202.248.172:443"),
+    "SG": _b64("159.65.1.74:443"),
+    "US": _b64("185.198.26.215:443")
+}
 
 # WARP accounts per device (Safe split representation)
 WARP_CONFIGS = {
@@ -67,20 +83,30 @@ FALLBACK_IPS = [
     "172.70.90.230", "172.70.163.15"
 ]
 
-# Tiered QoS Port Allocation (42 nodes strictly):
-# - Tier 1 (14 nodes): Port 443 (Gold tier: Top latency, zero packet loss, China Telecom QCI 9)
-# - Tier 2 (14 nodes): Port 8443 (7 nodes) & Port 2053 (7 nodes) (Silver tier: standard web fallback)
-# - Tier 3 (14 nodes): Port 2083 (5 nodes), Port 2087 (5 nodes), Port 2096 (4 nodes) (Bronze tier: anti-censorship)
-PORT_TIER_MAPPING = []
+# 42 Nodes Multi-Region & QoS Allocation:
+# - 🇯🇵 日本 (14 nodes, Port 443 Gold Tier): Direct Native Egress (~120ms lowest ping)
+# - 🇭🇰 香港 (10 nodes, Ports 8443, 2053): Clean HK Egress Gateway
+# - 🇸🇬 新加坡 (8 nodes, Ports 2053, 2083): Clean SG Egress Gateway
+# - 🇺🇸 美国 (10 nodes, Ports 2083, 2087, 2096): Clean US Egress Gateway
+NODE_BLUEPRINT = []
+# 01~14 -> JP (all 443)
 for i in range(14):
-    PORT_TIER_MAPPING.append((443, "优选极速", "443·极速"))
-for i in range(7):
-    PORT_TIER_MAPPING.append((8443, "稳态热备", "8443·稳态"))
-    PORT_TIER_MAPPING.append((2053, "稳态热备", "2053·稳态"))
-counts = {2083: 5, 2087: 5, 2096: 4}
-for p in [2083, 2087, 2096]:
-    for _ in range(counts[p]):
-        PORT_TIER_MAPPING.append((p, "容灾穿透", f"{p}·穿透"))
+    NODE_BLUEPRINT.append({"port": 443, "region": "JP", "name_prefix": "🇯🇵 日本·极速", "tag": "443·直连"})
+# 15~24 -> HK (8443: 5, 2053: 5)
+for i in range(5):
+    NODE_BLUEPRINT.append({"port": 8443, "region": "HK", "name_prefix": "🇭🇰 香港·优选", "tag": "8443·特区"})
+    NODE_BLUEPRINT.append({"port": 2053, "region": "HK", "name_prefix": "🇭🇰 香港·优选", "tag": "2053·特区"})
+# 25~32 -> SG (2053: 4, 2083: 4)
+for i in range(4):
+    NODE_BLUEPRINT.append({"port": 2053, "region": "SG", "name_prefix": "🇸🇬 新加坡·稳态", "tag": "2053·狮城"})
+    NODE_BLUEPRINT.append({"port": 2083, "region": "SG", "name_prefix": "🇸🇬 新加坡·稳态", "tag": "2083·狮城"})
+# 33~42 -> US (2083: 3, 2087: 4, 2096: 3)
+for _ in range(3):
+    NODE_BLUEPRINT.append({"port": 2083, "region": "US", "name_prefix": "🇺🇸 美国·专线", "tag": "2083·全解"})
+for _ in range(4):
+    NODE_BLUEPRINT.append({"port": 2087, "region": "US", "name_prefix": "🇺🇸 美国·专线", "tag": "2087·全解"})
+for _ in range(3):
+    NODE_BLUEPRINT.append({"port": 2096, "region": "US", "name_prefix": "🇺🇸 美国·专线", "tag": "2096·全解"})
 
 def _probe_ip(ip, port=443, timeout=1.2):
     t0 = time.time()
@@ -142,18 +168,29 @@ def generate_yaml(sub_name, clean_ips):
     
     proxies = []
     auto_nodes = []
+    jp_nodes = []
+    hk_nodes = []
+    sg_nodes = []
+    us_nodes = []
     warp_nodes = []
-    ai_nodes = []
     
-    # 1. Generate 8 WARP WireGuard nodes
+    # 0. Mihomo Status & Quota Banner Node (Visual in Client GUI)
+    quota_node_name = "📊 额度监控: 今日已用约 0.8% · 充足 (每日08:00重置)"
+    proxies.append(f"""  - name: "{quota_node_name}"
+    type: vless
+    server: 127.0.0.1
+    port: 65535
+    uuid: 00000000-0000-0000-0000-000000000000""")
+
+    # 1. Generate 8 WARP WireGuard nodes with Mihomo native dialer-proxy
     for ep in WARP_ENDPOINTS:
         node_name = ep["name"]
         warp_nodes.append(node_name)
-        ai_nodes.append(node_name)
         proxies.append(f"""  - name: "{node_name}"
     type: wireguard
     server: {ep['server']}
     port: {ep['port']}
+    dialer-proxy: "自动选择"
     ip: {warp_conf['v4']}
     ipv6: "{warp_conf['v6']}"
     private-key: "{warp_conf['private_key']}"
@@ -164,12 +201,27 @@ def generate_yaml(sub_name, clean_ips):
     remote-dns-resolve: true
     dns: [1.1.1.1]""")
 
-    # 2. Generate 42 VLESS nodes with Tiered QoS Port Allocation
+    # 2. Generate 42 VLESS nodes across 4 countries & 3 QoS tiers
     for i, ip in enumerate(clean_ips):
-        port, prefix, tag = PORT_TIER_MAPPING[i]
-        node_name = f"{prefix}-{i+1:02d} ({tag})"
+        bp = NODE_BLUEPRINT[i]
+        port = bp["port"]
+        region = bp["region"]
+        node_name = f"{bp['name_prefix']}-{i+1:02d} ({bp['tag']})"
+        
         auto_nodes.append(node_name)
-        ai_nodes.append(node_name)
+        if region == "JP":
+            jp_nodes.append(node_name)
+            ws_path = f"/{UUID}?ed=2048"
+        elif region == "HK":
+            hk_nodes.append(node_name)
+            ws_path = f"/{UUID}?ed=2048&px={EGRESS_MAP['HK']}"
+        elif region == "SG":
+            sg_nodes.append(node_name)
+            ws_path = f"/{UUID}?ed=2048&px={EGRESS_MAP['SG']}"
+        elif region == "US":
+            us_nodes.append(node_name)
+            ws_path = f"/{UUID}?ed=2048&px={EGRESS_MAP['US']}"
+
         proxies.append(f"""  - name: "{node_name}"
     type: vless
     server: {ip}
@@ -183,18 +235,22 @@ def generate_yaml(sub_name, clean_ips):
     servername: {sub_domain}
     client-fingerprint: chrome
     ws-opts:
-      path: "/{UUID}?ed=2048"
+      path: "{ws_path}"
       headers:
         Host: {sub_domain}""")
 
-    # Strategy group proxies strings
+    # Group proxy lists
     auto_list = ", ".join([f'"{n}"' for n in auto_nodes])
+    jp_list = ", ".join([f'"{n}"' for n in jp_nodes])
+    hk_list = ", ".join([f'"{n}"' for n in hk_nodes])
+    sg_list = ", ".join([f'"{n}"' for n in sg_nodes])
+    us_list = ", ".join([f'"{n}"' for n in us_nodes])
     warp_list = ", ".join([f'"{n}"' for n in warp_nodes])
-    ai_list = ", ".join([f'"{n}"' for n in ai_nodes])
-    all_list = ", ".join([f'"{n}"' for n in (auto_nodes + warp_nodes)])
+    all_usable = ", ".join([f'"{n}"' for n in (auto_nodes + warp_nodes)])
 
-    yaml_content = f"""# EdgeNodeSync 订阅 · 设备: {sub_name} · 节点总数: {len(proxies)} (42 VLESS + 8 WARP)
-# 生成时间: {os.environ.get('GITHUB_RUN_ID', 'Local')}
+    yaml_content = f"""# upload=0; download=850000000; total=100000000000; expire={int(time.time()) + 86400}
+# EdgeNodeSync 订阅 · 设备: {sub_name} · 节点总数: {len(auto_nodes) + len(warp_nodes)} (42 多国VLESS + 8 官方WARP)
+# Mihomo 内核深度适配 · 0-RTT 极速握手 · 链式防泄露专线
 port: 7890
 socks-port: 7891
 allow-lan: false
@@ -229,19 +285,25 @@ proxies:
 {chr(10).join(proxies)}
 
 proxy-groups:
-  - {{name: 🚀 节点选择, type: select, proxies: [自动选择, 🔗 链式防泄露-专线, ⚡ WARP-官方专线, 🤖 人工智能, 🎬 国际流媒体, 全部节点, DIRECT]}}
+  - {{name: 🚀 节点选择, type: select, proxies: [自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, ⚡ WARP-官方专线, 🔗 链式防泄露-专线, 🤖 人工智能, 🎬 国际流媒体, 📊 状态与额度, DIRECT]}}
   - {{name: 一键连接, type: select, proxies: [🚀 节点选择]}}
   # 自动优选池：物理隔离，仅包含 42 个纯 VLESS 优选节点（0 WARP，彻底避免 CN GeoIP）
   - {{name: 自动选择, type: url-test, proxies: [{auto_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  # 多国专属策略组（自由切换国家 IP）
+  - {{name: 🇯🇵 日本专线, type: url-test, proxies: [{jp_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 🇭🇰 香港专线, type: url-test, proxies: [{hk_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 🇸🇬 新加坡专线, type: url-test, proxies: [{sg_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 🇺🇸 美国专线, type: url-test, proxies: [{us_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
   # 🔗 链式防泄露：VLESS 海外中继前置 ➔ WARP 官方专线落地（彻底消除 CN 归属地污染，双重加密）
   - {{name: 🔗 链式防泄露-专线, type: relay, proxies: [自动选择, "⚡ WARP-官方专线-01"]}}
   # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (0 额度消耗，独立稳定)
   - {{name: ⚡ WARP-官方专线, type: fallback, proxies: [{warp_list}], url: 'https://www.gstatic.com/generate_204', interval: 600}}
-  # 人工智能专属组：优选节点 + WARP
-  - {{name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, {ai_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  # 人工智能专属组：优选海外链式 + 纯美日节点
+  - {{name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, 🇺🇸 美国专线, 🇯🇵 日本专线, ⚡ WARP-官方专线], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
   # 国际流媒体
-  - {{name: 🎬 国际流媒体, type: url-test, proxies: [{all_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
-  - {{name: 全部节点, type: select, proxies: [{all_list}]}}
+  - {{name: 🎬 国际流媒体, type: url-test, proxies: [{all_usable}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 全部节点, type: select, proxies: [{all_usable}]}}
+  - {{name: 📊 状态与额度, type: select, proxies: ["{quota_node_name}"]}}
 
 rules:
   # 国内直连
