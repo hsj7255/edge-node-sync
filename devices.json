@@ -1,0 +1,27 @@
+{
+  "description": "EdgeNodeSync Multi-Device Configuration Center",
+  "version": "2.0.0",
+  "devices": {
+    "sub01": {
+      "name": "PC主力机 (Clash Verge / Mihomo Party)",
+      "quota_gb": 100,
+      "used_gb": 0.85,
+      "primary_port": 443,
+      "description": "Gold Tier Direct Connect 443"
+    },
+    "sub02": {
+      "name": "主力手机 (FlClash / Surfboard)",
+      "quota_gb": 100,
+      "used_gb": 0.85,
+      "primary_port": 8443,
+      "description": "Mobile Dynamic Port 8443"
+    },
+    "sub03": {
+      "name": "联想平板 (FlClash / HA26ZEJ8)",
+      "quota_gb": 100,
+      "used_gb": 0.85,
+      "primary_port": 2053,
+      "description": "Tablet Low-Latency Office Port 2053"
+    }
+  }
+}
