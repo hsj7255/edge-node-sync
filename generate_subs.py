@@ -160,7 +160,7 @@ def fetch_best_ips():
     return final_ips[:42]
 
 def generate_yaml(sub_name, clean_ips):
-    warp_conf = WARP_CONFIGS[sub_name]
+    warp_conf = WARP_CONFIGS.get(sub_name, WARP_CONFIGS["sub01"])
     if DOMAIN_BASE == "websiteformewhohsj.cc.cd":
         sub_domain = f"{sub_name}.{DOMAIN_BASE}"
     else:
@@ -334,12 +334,42 @@ def main():
     print(f"Acquired {len(ips)} ranked IPs.")
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    for sub in ["sub01", "sub02", "sub03"]:
+    dev_path = os.path.join(script_dir, "devices.json")
+    target_subs = ["sub01", "sub02", "sub03"]
+    if os.path.exists(dev_path):
+        try:
+            with open(dev_path, "r", encoding="utf-8") as f:
+                ddata = json.load(f)
+                dev_keys = list(ddata.get("devices", {}).keys())
+                if dev_keys:
+                    target_subs = dev_keys
+        except Exception as e:
+            print(f"Error loading devices.json: {e}")
+
+    for sub in target_subs:
         content = generate_yaml(sub, ips)
         out_path = os.path.join(script_dir, f"{sub}.yaml")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(content)
         print(f"Generated {sub}.yaml ({len(content)} bytes)")
+
+    # Ensure Cloudflare Pages _headers file exists
+    headers_path = os.path.join(script_dir, "_headers")
+    if not os.path.exists(headers_path):
+        with open(headers_path, "w", encoding="utf-8") as f:
+            f.write("""/*.yaml
+  Access-Control-Allow-Origin: *
+  Content-Type: text/yaml; charset=utf-8
+  Subscription-Userinfo: upload=0; download=850000000; total=100000000000; expire=1796083200
+  Cache-Control: public, max-age=300
+
+/sub*
+  Access-Control-Allow-Origin: *
+  Content-Type: text/yaml; charset=utf-8
+  Subscription-Userinfo: upload=0; download=850000000; total=100000000000; expire=1796083200
+  Cache-Control: public, max-age=300
+""")
+        print("Generated Cloudflare Pages _headers file.")
 
 if __name__ == "__main__":
     main()
