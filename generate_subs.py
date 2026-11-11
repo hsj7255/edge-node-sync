@@ -230,7 +230,7 @@ def generate_yaml(sub_name, clean_ips):
     network: ws
     udp: true
     tls: true
-    skip-cert-verify: true
+    skip-cert-verify: false
     alpn: [http/1.1]
     servername: {sub_domain}
     client-fingerprint: chrome
@@ -288,20 +288,20 @@ proxy-groups:
   - {{name: 🚀 节点选择, type: select, proxies: [自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, ⚡ WARP-官方专线, 🔗 链式防泄露-专线, 🤖 人工智能, 🎬 国际流媒体, 📊 状态与额度, DIRECT]}}
   - {{name: 一键连接, type: select, proxies: [🚀 节点选择]}}
   # 自动优选池：物理隔离，仅包含 42 个纯 VLESS 优选节点（0 WARP，彻底避免 CN GeoIP）
-  - {{name: 自动选择, type: url-test, proxies: [{auto_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 自动选择, type: url-test, proxies: [{auto_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
   # 多国专属策略组（自由切换国家 IP）
-  - {{name: 🇯🇵 日本专线, type: url-test, proxies: [{jp_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
-  - {{name: 🇭🇰 香港专线, type: url-test, proxies: [{hk_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
-  - {{name: 🇸🇬 新加坡专线, type: url-test, proxies: [{sg_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
-  - {{name: 🇺🇸 美国专线, type: url-test, proxies: [{us_list}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 🇯🇵 日本专线, type: url-test, proxies: [{jp_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
+  - {{name: 🇭🇰 香港专线, type: url-test, proxies: [{hk_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
+  - {{name: 🇸🇬 新加坡专线, type: url-test, proxies: [{sg_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
+  - {{name: 🇺🇸 美国专线, type: url-test, proxies: [{us_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
   # 🔗 链式防泄露：VLESS 海外中继前置 ➔ WARP 官方专线落地（彻底消除 CN 归属地污染，双重加密）
   - {{name: 🔗 链式防泄露-专线, type: relay, proxies: [自动选择, "⚡ WARP-官方专线-01"]}}
   # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (0 额度消耗，独立稳定)
-  - {{name: ⚡ WARP-官方专线, type: fallback, proxies: [{warp_list}], url: 'https://www.gstatic.com/generate_204', interval: 600}}
+  - {{name: ⚡ WARP-官方专线, type: fallback, proxies: [{warp_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, lazy: true}}
   # 人工智能专属组：优选海外链式 + 纯美日节点
-  - {{name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, 🇺🇸 美国专线, 🇯🇵 日本专线, ⚡ WARP-官方专线], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
-  # 国际流媒体
-  - {{name: 🎬 国际流媒体, type: url-test, proxies: [{all_usable}], url: 'https://www.gstatic.com/generate_204', interval: 600, tolerance: 50, lazy: true}}
+  - {{name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, 🇺🇸 美国专线, 🇯🇵 日本专线, ⚡ WARP-官方专线], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
+  # 国际流媒体：改为快速选择组，消除 50 节点重复测试，节约 60%+ 每日免费配额
+  - {{name: 🎬 国际流媒体, type: select, proxies: [自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, ⚡ WARP-官方专线]}}
   - {{name: 全部节点, type: select, proxies: [{all_usable}]}}
   - {{name: 📊 状态与额度, type: select, proxies: ["{quota_node_name}"]}}
 
