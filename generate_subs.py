@@ -35,18 +35,18 @@ EGRESS_MAP = {
 # WARP accounts per device (Safe split representation)
 WARP_CONFIGS = {
     "sub01": {
-        "private_key": _dec(["sHDsqTnJPvRW", "ZZUGFrOsM8gb", "TjU8yb7pCn/K", "e0aazX0="]),
+        "private_key": _dec(["gOISUCJafBwk", "j2ke116yWdz4", "//1wfodSYH6j", "j0Ua0FM="]),
         "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
         "reserved": [173, 52, 233],
         "v4": "172.16.0.2",
-        "v6": "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+        "v6": "2606:4700:110:80ab:7e67:5fb7:c0c3:e03c"
     },
     "sub02": {
-        "private_key": _dec(["sHDsqTnJPvRW", "ZZUGFrOsM8gb", "TjU8yb7pCn/K", "e0aazX0="]),
+        "private_key": _dec(["qPjtFVHZAWzE", "HBrVqxLDNzr7", "IGcYQhBJn0mr", "Gm1bSUk="]),
         "public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
         "reserved": [95, 91, 32],
         "v4": "172.16.0.2",
-        "v6": "2606:4700:110:8ab3:2f83:58be:4385:fd05"
+        "v6": "2606:4700:110:8fec:eac9:cd72:64ad:9d69"
     },
     "sub03": {
         "private_key": _dec(["sHDsqTnJPvRW", "ZZUGFrOsM8gb", "TjU8yb7pCn/K", "e0aazX0="]),
@@ -58,14 +58,14 @@ WARP_CONFIGS = {
 }
 
 WARP_ENDPOINTS = [
-    {"name": "⚡ WARP-官方专线-01", "server": "engage.cloudflareclient.com", "port": 2408},
-    {"name": "⚡ WARP-官方专线-02", "server": "162.159.193.10", "port": 2408},
-    {"name": "⚡ WARP-官方专线-03", "server": "162.159.192.1", "port": 894},
-    {"name": "⚡ WARP-官方专线-04", "server": "162.159.195.1", "port": 8884},
-    {"name": "⚡ WARP-官方专线-05", "server": "188.114.96.1", "port": 2408},
-    {"name": "⚡ WARP-官方专线-06", "server": "188.114.97.1", "port": 890},
-    {"name": "⚡ WARP-官方专线-07", "server": "188.114.98.1", "port": 1074},
-    {"name": "⚡ WARP-官方专线-08", "server": "188.114.99.1", "port": 8984}
+    {"name": "⚡ WARP-IPv6官方-01", "server": "2606:4700:d0::a29f:c001", "port": 2408},
+    {"name": "⚡ WARP-IPv6官方-02", "server": "2606:4700:d0::a29f:c001", "port": 894},
+    {"name": "⚡ WARP-IPv6官方-03", "server": "2606:4700:d0::a29f:c101", "port": 2408},
+    {"name": "⚡ WARP-IPv6官方-04", "server": "2606:4700:d0::a29f:c101", "port": 1074},
+    {"name": "⚡ WARP-IPv4备用-05", "server": "162.159.192.1", "port": 2408},
+    {"name": "⚡ WARP-IPv4备用-06", "server": "162.159.193.10", "port": 2408},
+    {"name": "⚡ WARP-IPv4备用-07", "server": "188.114.96.1", "port": 2408},
+    {"name": "⚡ WARP-IPv4备用-08", "server": "188.114.97.1", "port": 890}
 ]
 
 # Fallback clean Anycast IPs (China Telecom optimized)
@@ -182,15 +182,14 @@ def generate_yaml(sub_name, clean_ips):
     port: 65535
     uuid: 00000000-0000-0000-0000-000000000000""")
 
-    # 1. Generate 8 WARP WireGuard nodes with Mihomo native dialer-proxy
+    # 1. Generate 8 WARP WireGuard nodes (Clean native WireGuard without broken dialer-proxy)
     for ep in WARP_ENDPOINTS:
         node_name = ep["name"]
         warp_nodes.append(node_name)
         proxies.append(f"""  - name: "{node_name}"
     type: wireguard
-    server: {ep['server']}
+    server: "{ep['server']}"
     port: {ep['port']}
-    dialer-proxy: "自动选择"
     ip: {warp_conf['v4']}
     ipv6: "{warp_conf['v6']}"
     private-key: "{warp_conf['private_key']}"
@@ -256,14 +255,14 @@ socks-port: 7891
 allow-lan: false
 mode: rule
 log-level: info
-ipv6: false
+ipv6: true
 external-controller: 127.0.0.1:9090
 profile-update-interval: 4
 
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -285,7 +284,7 @@ proxies:
 {chr(10).join(proxies)}
 
 proxy-groups:
-  - {{name: 🚀 节点选择, type: select, proxies: [自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, ⚡ WARP-官方专线, 🔗 链式防泄露-专线, 🤖 人工智能, 🎬 国际流媒体, 📊 状态与额度, DIRECT]}}
+  - {{name: 🚀 节点选择, type: select, proxies: [⚡ WARP-官方专线, 自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, 🤖 人工智能, 🎬 国际流媒体, 📊 状态与额度, DIRECT]}}
   - {{name: 一键连接, type: select, proxies: [🚀 节点选择]}}
   # 自动优选池：物理隔离，仅包含 42 个纯 VLESS 优选节点（0 WARP，彻底避免 CN GeoIP）
   - {{name: 自动选择, type: url-test, proxies: [{auto_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
@@ -294,14 +293,12 @@ proxy-groups:
   - {{name: 🇭🇰 香港专线, type: url-test, proxies: [{hk_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
   - {{name: 🇸🇬 新加坡专线, type: url-test, proxies: [{sg_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
   - {{name: 🇺🇸 美国专线, type: url-test, proxies: [{us_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
-  # 🔗 链式防泄露：VLESS 海外中继前置 ➔ WARP 官方专线落地（彻底消除 CN 归属地污染，双重加密）
-  - {{name: 🔗 链式防泄露-专线, type: relay, proxies: [自动选择, "⚡ WARP-官方专线-01"]}}
-  # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (0 额度消耗，独立稳定)
-  - {{name: ⚡ WARP-官方专线, type: fallback, proxies: [{warp_list}], url: 'https://www.gstatic.com/generate_204', interval: 1800, lazy: true}}
-  # 人工智能专属组：优选海外链式 + 纯美日节点
-  - {{name: 🤖 人工智能, type: url-test, proxies: [🔗 链式防泄露-专线, 🇺🇸 美国专线, 🇯🇵 日本专线, ⚡ WARP-官方专线], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
-  # 国际流媒体：改为快速选择组，消除 50 节点重复测试，节约 60%+ 每日免费配额
-  - {{name: 🎬 国际流媒体, type: select, proxies: [自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线, ⚡ WARP-官方专线]}}
+  # ⚡ WARP 官方专线：WireGuard UDP 直连 Cloudflare 骨干网 (支持 IPv6 直连，手机移动蜂窝网络兜底神线)
+  - {{name: ⚡ WARP-官方专线, type: select, proxies: [{warp_list}]}}
+  # 人工智能专属组：优选海外与 WARP
+  - {{name: 🤖 人工智能, type: url-test, proxies: [⚡ WARP-官方专线, 🇺🇸 美国专线, 🇯🇵 日本专线], url: 'https://www.gstatic.com/generate_204', interval: 1800, tolerance: 100, lazy: true}}
+  # 国际流媒体
+  - {{name: 🎬 国际流媒体, type: select, proxies: [⚡ WARP-官方专线, 自动选择, 🇯🇵 日本专线, 🇭🇰 香港专线, 🇸🇬 新加坡专线, 🇺🇸 美国专线]}}
   - {{name: 全部节点, type: select, proxies: [{all_usable}]}}
   - {{name: 📊 状态与额度, type: select, proxies: ["{quota_node_name}"]}}
 
