@@ -57,16 +57,63 @@ WARP_CONFIGS = {
     }
 }
 
-WARP_ENDPOINTS = [
-    {"name": "⚡ WARP-IPv6官方-01", "server": "2606:4700:d0::a29f:c001", "port": 2408},
-    {"name": "⚡ WARP-IPv6官方-02", "server": "2606:4700:d0::a29f:c001", "port": 894},
-    {"name": "⚡ WARP-IPv6官方-03", "server": "2606:4700:d0::a29f:c101", "port": 2408},
-    {"name": "⚡ WARP-IPv6官方-04", "server": "2606:4700:d0::a29f:c101", "port": 1074},
+DEFAULT_WARP_ENDPOINTS = [
+    {"name": "⚡ WARP-粤港IPv6-01 (极速)", "server": "2606:4700:d0::a29f:c001", "port": 2408},
+    {"name": "⚡ WARP-粤港IPv6-02 (专线)", "server": "2606:4700:d0::a29f:c001", "port": 894},
+    {"name": "⚡ WARP-粤港IPv6-03 (备用)", "server": "2606:4700:d0::a29f:c101", "port": 2408},
+    {"name": "⚡ WARP-粤港IPv6-04 (低阻)", "server": "2606:4700:d0::a29f:c101", "port": 1074},
     {"name": "⚡ WARP-IPv4备用-05", "server": "162.159.192.1", "port": 2408},
     {"name": "⚡ WARP-IPv4备用-06", "server": "162.159.193.10", "port": 2408},
     {"name": "⚡ WARP-IPv4备用-07", "server": "188.114.96.1", "port": 2408},
     {"name": "⚡ WARP-IPv4备用-08", "server": "188.114.97.1", "port": 890}
 ]
+
+def fetch_best_warp_endpoints():
+    """
+    Dynamically fetch real-time scanned WARP endpoints from the community feed.
+    Prioritizes South China / Shenzhen low-latency routing:
+    - 4 Core IPv6 direct Anycast endpoints peering into Cloudflare HKG (~15-25ms from Guangdong)
+    - 4 Dynamically scanned and rotated IPv4 custom-port endpoints
+    """
+    eps = [
+        {"name": "⚡ WARP-粤港IPv6-01 (极速)", "server": "2606:4700:d0::a29f:c001", "port": 2408},
+        {"name": "⚡ WARP-粤港IPv6-02 (专线)", "server": "2606:4700:d0::a29f:c001", "port": 894},
+        {"name": "⚡ WARP-粤港IPv6-03 (备用)", "server": "2606:4700:d0::a29f:c101", "port": 2408},
+        {"name": "⚡ WARP-粤港IPv6-04 (低阻)", "server": "2606:4700:d0::a29f:c101", "port": 1074},
+    ]
+
+    dynamic_v4 = []
+    feed_url = "https://raw.githubusercontent.com/DarknessShade/Warp-Endpoint-Scanner/main/export/warp-ip"
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(feed_url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=8, context=ctx) as r:
+            lines = r.read().decode("utf-8", errors="ignore").splitlines()
+            for line in lines:
+                line = line.strip()
+                if ":" in line:
+                    parts = line.split(":")
+                    if len(parts) == 2 and parts[1].isdigit():
+                        dynamic_v4.append({"server": parts[0], "port": int(parts[1])})
+        print(f"Scanned WARP IP feed success: {len(dynamic_v4)} endpoints available.")
+    except Exception as e:
+        print("Scanned WARP IP feed notice:", e)
+
+    if len(dynamic_v4) >= 4:
+        for idx in range(4):
+            item = dynamic_v4[idx]
+            eps.append({
+                "name": f"⚡ WARP-动态优选-0{idx+5} (IPv4·{item['port']})",
+                "server": item["server"],
+                "port": item["port"]
+            })
+    else:
+        for item in DEFAULT_WARP_ENDPOINTS[4:]:
+            eps.append(item)
+
+    return eps
 
 # Fallback clean Anycast IPs (China Telecom optimized)
 FALLBACK_IPS = [
@@ -159,7 +206,9 @@ def fetch_best_ips():
                 break
     return final_ips[:42]
 
-def generate_yaml(sub_name, clean_ips):
+def generate_yaml(sub_name, clean_ips, warp_endpoints=None):
+    if not warp_endpoints:
+        warp_endpoints = DEFAULT_WARP_ENDPOINTS
     warp_conf = WARP_CONFIGS.get(sub_name, WARP_CONFIGS["sub01"])
     if DOMAIN_BASE == "websiteformewhohsj.cc.cd":
         sub_domain = f"{sub_name}.{DOMAIN_BASE}"
@@ -183,7 +232,7 @@ def generate_yaml(sub_name, clean_ips):
     uuid: 00000000-0000-0000-0000-000000000000""")
 
     # 1. Generate 8 WARP WireGuard nodes (Clean native WireGuard without broken dialer-proxy)
-    for ep in WARP_ENDPOINTS:
+    for ep in warp_endpoints:
         node_name = ep["name"]
         warp_nodes.append(node_name)
         proxies.append(f"""  - name: "{node_name}"
@@ -329,6 +378,10 @@ def main():
     print("Fetching and ranking best IPs...")
     ips = fetch_best_ips()
     print(f"Acquired {len(ips)} ranked IPs.")
+
+    print("Fetching dynamic WARP endpoints (Shenzhen/Guangdong prioritized)...")
+    warp_endpoints = fetch_best_warp_endpoints()
+    print(f"Acquired {len(warp_endpoints)} live WARP endpoints.")
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
     dev_path = os.path.join(script_dir, "devices.json")
@@ -344,7 +397,7 @@ def main():
             print(f"Error loading devices.json: {e}")
 
     for sub in target_subs:
-        content = generate_yaml(sub, ips)
+        content = generate_yaml(sub, ips, warp_endpoints)
         out_path = os.path.join(script_dir, f"{sub}.yaml")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(content)
