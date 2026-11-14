@@ -1,4 +1,4 @@
-# upload=0; download=850000000; total=100000000000; expire=1794735195
+# upload=0; download=850000000; total=100000000000; expire=1794741699
 # EdgeNodeSync 订阅 · 设备: sub02 · 节点总数: 50 (42 多国VLESS + 8 官方WARP)
 # Mihomo 内核深度适配 · 0-RTT 极速握手 · 链式防泄露专线
 port: 7890
@@ -143,7 +143,7 @@ proxies:
     dns: [1.1.1.1]
   - name: "🇯🇵 日本·极速-01 (443·直连)"
     type: vless
-    server: 104.16.125.127
+    server: 108.162.196.66
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -159,7 +159,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-02 (443·直连)"
     type: vless
-    server: 104.16.94.155
+    server: 104.18.7.34
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -191,7 +191,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-04 (443·直连)"
     type: vless
-    server: 104.23.214.15
+    server: 141.101.122.151
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -207,7 +207,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-05 (443·直连)"
     type: vless
-    server: 162.159.198.1
+    server: 104.16.94.155
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -223,7 +223,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-06 (443·直连)"
     type: vless
-    server: 162.159.197.1
+    server: 104.24.141.113
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -239,7 +239,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-07 (443·直连)"
     type: vless
-    server: 104.24.120.219
+    server: 162.159.198.1
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -255,7 +255,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-08 (443·直连)"
     type: vless
-    server: 104.24.141.113
+    server: 141.101.120.226
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -271,7 +271,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-09 (443·直连)"
     type: vless
-    server: 104.23.195.172
+    server: 162.159.197.1
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -287,7 +287,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-10 (443·直连)"
     type: vless
-    server: 104.24.222.245
+    server: 104.27.72.191
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -303,7 +303,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-11 (443·直连)"
     type: vless
-    server: 104.26.253.237
+    server: 141.101.123.136
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -319,7 +319,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-12 (443·直连)"
     type: vless
-    server: 104.18.7.34
+    server: 162.159.18.244
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -335,7 +335,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-13 (443·直连)"
     type: vless
-    server: 108.162.192.131
+    server: 104.27.24.43
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -351,7 +351,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇯🇵 日本·极速-14 (443·直连)"
     type: vless
-    server: 104.27.238.208
+    server: 104.16.125.127
     port: 443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -367,7 +367,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-15 (8443·特区)"
     type: vless
-    server: 108.162.234.40
+    server: 104.24.222.245
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -383,7 +383,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-16 (2053·特区)"
     type: vless
-    server: 108.162.196.66
+    server: 172.65.162.1
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -399,7 +399,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-17 (8443·特区)"
     type: vless
-    server: 141.101.69.73
+    server: 108.162.192.131
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -415,7 +415,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-18 (2053·特区)"
     type: vless
-    server: 104.27.72.191
+    server: 104.20.227.120
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -431,7 +431,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-19 (8443·特区)"
     type: vless
-    server: 108.162.225.118
+    server: 104.22.11.214
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -447,7 +447,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-20 (2053·特区)"
     type: vless
-    server: 141.101.84.234
+    server: 104.23.195.172
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -463,7 +463,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-21 (8443·特区)"
     type: vless
-    server: 108.162.204.242
+    server: 104.23.214.15
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -479,7 +479,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-22 (2053·特区)"
     type: vless
-    server: 108.162.244.237
+    server: 104.24.120.219
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -495,7 +495,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-23 (8443·特区)"
     type: vless
-    server: 172.70.90.230
+    server: 104.26.83.77
     port: 8443
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -511,7 +511,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇭🇰 香港·优选-24 (2053·特区)"
     type: vless
-    server: 141.101.106.124
+    server: 104.26.253.237
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -527,7 +527,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-25 (2053·狮城)"
     type: vless
-    server: 141.101.108.92
+    server: 104.27.238.208
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -543,7 +543,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-26 (2083·狮城)"
     type: vless
-    server: 172.70.163.15
+    server: 108.162.204.242
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -559,7 +559,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-27 (2053·狮城)"
     type: vless
-    server: 172.70.18.42
+    server: 108.162.225.118
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -575,7 +575,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-28 (2083·狮城)"
     type: vless
-    server: 141.101.118.98
+    server: 108.162.234.40
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -591,7 +591,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-29 (2053·狮城)"
     type: vless
-    server: 162.159.112.37
+    server: 108.162.244.237
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -607,7 +607,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-30 (2083·狮城)"
     type: vless
-    server: 141.101.120.226
+    server: 141.101.69.73
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -623,7 +623,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-31 (2053·狮城)"
     type: vless
-    server: 172.65.162.1
+    server: 141.101.84.234
     port: 2053
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -639,7 +639,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇸🇬 新加坡·稳态-32 (2083·狮城)"
     type: vless
-    server: 162.158.6.178
+    server: 141.101.106.124
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -655,7 +655,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-33 (2083·全解)"
     type: vless
-    server: 162.159.65.63
+    server: 141.101.108.92
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -671,7 +671,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-34 (2083·全解)"
     type: vless
-    server: 141.101.122.151
+    server: 141.101.108.247
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -687,7 +687,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-35 (2083·全解)"
     type: vless
-    server: 141.101.123.136
+    server: 141.101.118.98
     port: 2083
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -703,7 +703,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-36 (2087·全解)"
     type: vless
-    server: 162.158.33.72
+    server: 162.158.6.178
     port: 2087
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -719,7 +719,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-37 (2087·全解)"
     type: vless
-    server: 162.158.211.13
+    server: 162.158.33.72
     port: 2087
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -735,7 +735,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-38 (2087·全解)"
     type: vless
-    server: 162.159.18.244
+    server: 162.158.45.221
     port: 2087
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -751,7 +751,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-39 (2087·全解)"
     type: vless
-    server: 162.158.45.221
+    server: 162.158.211.13
     port: 2087
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -767,7 +767,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-40 (2096·全解)"
     type: vless
-    server: 141.101.108.247
+    server: 162.159.65.63
     port: 2096
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -783,7 +783,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-41 (2096·全解)"
     type: vless
-    server: 104.27.24.43
+    server: 162.159.112.37
     port: 2096
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
@@ -799,7 +799,7 @@ proxies:
         Host: sub02.websiteformewhohsj.cc.cd
   - name: "🇺🇸 美国·专线-42 (2096·全解)"
     type: vless
-    server: 104.26.83.77
+    server: 172.70.18.42
     port: 2096
     uuid: 0e12affd-6afa-48bf-bb85-5272fcc0504e
     network: ws
